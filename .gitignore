@@ -1,0 +1,35 @@
+# Environment variables & secrets (CRITICAL)
+.env
+.env.local
+*.env
+
+# Claude / IDE / Local Agent settings
+.claude/
+.idea/
+.vscode/
+
+# Python / Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environment
+venv/
+.venv/
+env/
+ENV/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

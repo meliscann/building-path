@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuildingPath</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     LANDING PAGE
+     ═══════════════════════════════════════════════════════ -->
+<div id="landing-page">
+
+  <!-- Animated background building -->
+  <div class="lp-bg">
+    <svg class="lp-building-bg" viewBox="0 0 700 500" fill="none" aria-hidden="true">
+      <defs>
+        <radialGradient id="lpGMint" cx="50%" cy="58%" r="52%">
+          <stop offset="0%" stop-color="#4CFFBF" stop-opacity="0.14"/>
+          <stop offset="100%" stop-color="#4CFFBF" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="lpGlowMint">
+          <feGaussianBlur stdDeviation="2.5" result="blur"/>
+          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+        </filter>
+        <filter id="lpGlowRose">
+          <feGaussianBlur stdDeviation="2" result="blur"/>
+          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+        </filter>
+      </defs>
+
+      <!-- Ambient glow -->
+      <ellipse cx="350" cy="340" rx="240" ry="155" fill="url(#lpGMint)"/>
+
+      <!-- Ground shadow -->
+      <ellipse cx="350" cy="464" rx="108" ry="13" fill="rgba(0,0,0,0.45)"/>
+
+      <!-- Left face -->
+      <polygon points="250,240 350,290 350,450 250,400" fill="#0d1520"/>
+      <!-- Right face -->
+      <polygon points="350,290 450,240 450,400 350,450" fill="#121c2d"/>
+      <!-- Top face -->
+      <polygon points="250,240 350,190 450,240 350,290" fill="#1b2d47"/>
+      <polygon points="250,240 350,190 450,240 350,290" fill="rgba(76,255,191,0.08)"/>
+
+      <!-- Top face borders — mint -->
+      <polyline points="250,240 350,190 450,240" stroke="rgba(76,255,191,0.45)" stroke-width="1.5" stroke-linejoin="round"/>
+      <line x1="250" y1="240" x2="350" y2="290" stroke="rgba(76,255,191,0.15)" stroke-width="1"/>
+      <line x1="450" y1="240" x2="350" y2="290" stroke="rgba(76,255,191,0.15)" stroke-width="1"/>
+
+      <!-- Rose accent — top-right ridge -->
+      <line x1="350" y1="190" x2="450" y2="240" stroke="rgba(255,107,138,0.65)" stroke-width="1.5"/>
+      <circle cx="450" cy="240" r="3" fill="rgba(255,107,138,0.85)"/>
+      <circle cx="350" cy="190" r="2" fill="rgba(255,107,138,0.5)"/>
+
+      <!-- Floor dividers — right face -->
+      <line x1="350" y1="330" x2="450" y2="280" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="350" y1="370" x2="450" y2="320" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <line x1="350" y1="410" x2="450" y2="360" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+      <!-- Floor dividers — left face -->
+      <line x1="250" y1="280" x2="350" y2="330" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <line x1="250" y1="320" x2="350" y2="370" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <line x1="250" y1="360" x2="350" y2="410" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+      <!-- Windows right face -->
+      <rect x="377" y="280" width="12" height="18" rx="2" fill="rgba(76,255,191,0.32)"/>
+      <rect x="412" y="263" width="12" height="18" rx="2" fill="rgba(76,255,191,0.32)"/>
+      <rect x="377" y="320" width="12" height="18" rx="2" fill="rgba(76,255,191,0.20)"/>
+      <rect x="412" y="303" width="12" height="18" rx="2" fill="rgba(76,255,191,0.20)"/>
+      <rect x="377" y="360" width="12" height="18" rx="2" fill="rgba(76,255,191,0.12)"/>
+      <rect x="412" y="343" width="12" height="18" rx="2" fill="rgba(76,255,191,0.12)"/>
+      <rect x="377" y="400" width="12" height="18" rx="2" fill="rgba(76,255,191,0.06)"/>
+      <rect x="412" y="383" width="12" height="18" rx="2" fill="rgba(76,255,191,0.06)"/>
+
+      <!-- Windows left face -->
+      <rect x="292" y="267" width="12" height="18" rx="2" fill="rgba(76,255,191,0.12)"/>
+      <rect x="292" y="307" width="12" height="18" rx="2" fill="rgba(76,255,191,0.08)"/>
+      <rect x="292" y="347" width="12" height="18" rx="2" fill="rgba(76,255,191,0.05)"/>
+
+      <!-- Silhouette edges -->
+      <line x1="250" y1="240" x2="250" y2="400" stroke="rgba(255,255,255,0.07)" stroke-width="0.75"/>
+      <line x1="450" y1="240" x2="450" y2="400" stroke="rgba(255,255,255,0.07)" stroke-width="0.75"/>
+      <line x1="250" y1="400" x2="350" y2="450" stroke="rgba(255,255,255,0.07)" stroke-width="0.75"/>
+      <line x1="350" y1="450" x2="450" y2="400" stroke="rgba(255,255,255,0.07)" stroke-width="0.75"/>
+
+      <!-- ── Animated route paths ── -->
+      <!-- Mint route: floor 2 right face corridor -->
+      <line class="lp-route lp-route-m1"
+            x1="350" y1="370" x2="450" y2="320"
+            stroke="#4CFFBF" stroke-width="1.8"
+            stroke-dasharray="112" stroke-dashoffset="112"
+            filter="url(#lpGlowMint)"/>
+      <!-- Mint route: floor 1 left face corridor -->
+      <line class="lp-route lp-route-m2"
+            x1="250" y1="320" x2="350" y2="370"
+            stroke="#4CFFBF" stroke-width="1.8"
+            stroke-dasharray="112" stroke-dashoffset="112"
+            filter="url(#lpGlowMint)"/>
+      <!-- Rose route: vertical (elevator/stair shaft) right face -->
+      <line class="lp-route lp-route-r1"
+            x1="400" y1="265" x2="400" y2="425"
+            stroke="#FF8DB5" stroke-width="1.8"
+            stroke-dasharray="160" stroke-dashoffset="160"
+            filter="url(#lpGlowRose)"/>
+      <!-- Mint route: floor 3 right face -->
+      <line class="lp-route lp-route-m3"
+            x1="350" y1="410" x2="450" y2="360"
+            stroke="#4CFFBF" stroke-width="1.5"
+            stroke-dasharray="112" stroke-dashoffset="112"
+            filter="url(#lpGlowMint)"/>
+
+      <!-- Floating particles -->
+      <circle cx="185" cy="295" r="2.5" class="lp-particle" fill="rgba(76,255,191,0.55)"/>
+      <circle cx="515" cy="262" r="2"   class="lp-particle lp-p2" fill="rgba(255,141,181,0.55)"/>
+      <circle cx="175" cy="390" r="2"   class="lp-particle lp-p3" fill="rgba(76,255,191,0.35)"/>
+      <circle cx="525" cy="385" r="2.5" class="lp-particle lp-p4" fill="rgba(76,255,191,0.28)"/>
+      <circle cx="565" cy="305" r="1.5" class="lp-particle lp-p5" fill="rgba(255,141,181,0.4)"/>
+      <circle cx="145" cy="340" r="1.5" class="lp-particle lp-p6" fill="rgba(76,255,191,0.25)"/>
+    </svg>
+  </div>
+
+  <!-- Hero content -->
+  <div class="lp-content">
+    <span class="lp-badge">[ BETA ]</span>
+    <h1 class="lp-hero">
+      navigate the indoors.<br>
+      <span class="lp-hero-accent">build your path.</span>
+    </h1>
+    <button id="launch-btn" class="lp-launch">start →</button>
+  </div>
+
+</div><!-- /#landing-page -->
+
+<!-- ═══════════════════════════════════════════════════════
+     ONBOARDING MODAL
+     ═══════════════════════════════════════════════════════ -->
+<div id="onboarding-overlay" class="hidden" aria-modal="true" role="dialog">
+  <div id="onboarding-modal">
+    <p class="ob-title" data-tr="BuildingPath'e Hoş Geldiniz" data-en="Welcome to BuildingPath">BuildingPath'e Hoş Geldiniz</p>
+    <p class="ob-sub" data-tr="Üç farklı mod ile binayı keşfedin" data-en="Explore the building with three modes">Üç farklı mod ile binayı keşfedin</p>
+
+    <div class="ob-cards">
+      <div class="ob-card ob-card--nav">
+        <span class="ob-card-icon"><i data-lucide="compass"></i></span>
+        <span class="ob-card-label" data-tr="Navigasyon" data-en="Navigation">Navigasyon</span>
+        <span class="ob-card-desc" data-tr="Başlangıç ve hedef noktası seçerek kat planı üzerinde adım adım yol tarifi alın." data-en="Select start and destination to get step-by-step directions on the floor map.">Başlangıç ve hedef noktası seçerek kat planı üzerinde adım adım yol tarifi alın.</span>
+      </div>
+      <div class="ob-card ob-card--explore">
+        <span class="ob-card-icon"><i data-lucide="building-2"></i></span>
+        <span class="ob-card-label" data-tr="Keşfet" data-en="Explore">Keşfet</span>
+        <span class="ob-card-desc" data-tr="Bina içindeki tüm mekânları kategorilere göre inceleyin, bilgi alın ve sorular sorun." data-en="Browse all spaces by category, get details and ask questions about the building.">Bina içindeki tüm mekânları kategorilere göre inceleyin, bilgi alın ve sorular sorun.</span>
+      </div>
+      <div class="ob-card ob-card--plans">
+        <span class="ob-card-icon"><i data-lucide="layers"></i></span>
+        <span class="ob-card-label" data-tr="Kat Planları" data-en="Floor Plans">Kat Planları</span>
+        <span class="ob-card-desc" data-tr="Binanın tüm katlarına ait haritaları görüntüleyin." data-en="View the floor maps for all levels of the building.">Binanın tüm katlarına ait haritaları görüntüleyin.</span>
+      </div>
+    </div>
+
+    <button id="ob-close"
+            data-tr="Başlayalım →"
+            data-en="Get started →">Başlayalım →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     MAIN APPLICATION
+     ═══════════════════════════════════════════════════════ -->
+<div id="main-app">
+
+<header class="app-header">
+  <div class="brand">
+    <img class="brand-mark" src="/static/logo.png" alt="BuildingPath">
+    <div class="brand-text">
+      <span class="brand-name">BuildingPath</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="mode-tabs">
+      <button class="mode-tab active" id="tab-nav" onclick="switchMode('nav')">
+        <i data-lucide="compass"></i><span class="mode-label" data-tr="Navigasyon" data-en="Navigation">Navigasyon</span>
+      </button>
+      <button class="mode-tab" id="tab-explore" onclick="switchMode('explore')">
+        <i data-lucide="building-2"></i><span class="mode-label" data-tr="Keşfet" data-en="Explore">Keşfet</span>
+      </button>
+      <button class="mode-tab" id="tab-plans" onclick="switchMode('plans')">
+        <i data-lucide="layers"></i><span class="mode-label" data-tr="Kat Planları" data-en="Floor Plans">Kat Planları</span>
+      </button>
+    </div>
+    <div class="lang-switch">
+      <button id="lang-tr" class="lang-btn active" onclick="setLang('tr')">TR</button>
+      <button id="lang-en" class="lang-btn"        onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</header>
+
+<div id="mode-nav" class="app-body">
+
+  <!-- ── Chat Panel ──────────────────────────── -->
+  <section class="chat-panel">
+    <div class="messages" id="messages"></div>
+    <div class="input-bar hidden" id="input-bar">
+      <input id="text-input" type="text" autocomplete="off"
+             placeholder="Yer adı yazın…" />
+      <button id="send-btn" aria-label="Gönder">&#8594;</button>
+    </div>
+  </section>
+
+  <!-- ── Map Panel ───────────────────────────── -->
+  <section class="map-panel">
+
+    <!-- Placeholder before any route is computed -->
+    <div id="map-welcome" class="map-welcome">
+
+      <!-- Isometric building illustration -->
+      <svg class="mw-building" viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <radialGradient id="gMint" cx="50%" cy="55%" r="55%">
+            <stop offset="0%" stop-color="#4CFFBF" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#4CFFBF" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="gRose" cx="72%" cy="28%" r="38%">
+            <stop offset="0%" stop-color="#FF6B8A" stop-opacity="0.14"/>
+            <stop offset="100%" stop-color="#FF6B8A" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Ambient glows -->
+        <ellipse cx="140" cy="125" rx="130" ry="85" fill="url(#gMint)"/>
+        <ellipse cx="185" cy="72" rx="75" ry="55" fill="url(#gRose)"/>
+
+        <!-- Ground shadow -->
+        <ellipse cx="140" cy="182" rx="62" ry="9" fill="rgba(0,0,0,0.45)"/>
+
+        <!-- Left face -->
+        <polygon points="90,65 140,90 140,170 90,145" fill="#0d1520"/>
+        <!-- Right face -->
+        <polygon points="140,90 190,65 190,145 140,170" fill="#121c2d"/>
+        <!-- Top face base -->
+        <polygon points="90,65 140,40 190,65 140,90" fill="#1b2d47"/>
+        <!-- Top face mint tint -->
+        <polygon points="90,65 140,40 190,65 140,90" fill="rgba(76,255,191,0.10)"/>
+
+        <!-- Top face border — mint front edges -->
+        <polyline points="90,65 140,40 190,65" stroke="rgba(76,255,191,0.50)" stroke-width="1.5" stroke-linejoin="round"/>
+        <line x1="90" y1="65" x2="140" y2="90" stroke="rgba(76,255,191,0.18)" stroke-width="1"/>
+        <line x1="190" y1="65" x2="140" y2="90" stroke="rgba(76,255,191,0.18)" stroke-width="1"/>
+
+        <!-- Rose accent — top-right ridge -->
+        <line x1="140" y1="40" x2="190" y2="65" stroke="rgba(255,107,138,0.75)" stroke-width="1.5"/>
+        <circle cx="190" cy="65" r="2.5" fill="rgba(255,107,138,0.85)"/>
+        <circle cx="140" cy="40" r="2" fill="rgba(255,107,138,0.5)"/>
+
+        <!-- Floor dividers — right face (4 floors, 20px each) -->
+        <line x1="140" y1="110" x2="190" y2="85"  stroke="rgba(255,255,255,0.07)" stroke-width="0.75"/>
+        <line x1="140" y1="130" x2="190" y2="105" stroke="rgba(255,255,255,0.07)" stroke-width="0.75"/>
+        <line x1="140" y1="150" x2="190" y2="125" stroke="rgba(255,255,255,0.07)" stroke-width="0.75"/>
+
+        <!-- Floor dividers — left face -->
+        <line x1="90" y1="85"  x2="140" y2="110" stroke="rgba(255,255,255,0.05)" stroke-width="0.75"/>
+        <line x1="90" y1="105" x2="140" y2="130" stroke="rgba(255,255,255,0.05)" stroke-width="0.75"/>
+        <line x1="90" y1="125" x2="140" y2="150" stroke="rgba(255,255,255,0.05)" stroke-width="0.75"/>
+
+        <!-- Windows — right face (2 cols × 4 floors) -->
+        <rect x="152" y="87"  width="8" height="12" rx="1.5" fill="rgba(76,255,191,0.38)"/>
+        <rect x="169" y="79"  width="8" height="12" rx="1.5" fill="rgba(76,255,191,0.38)"/>
+        <rect x="152" y="107" width="8" height="12" rx="1.5" fill="rgba(76,255,191,0.24)"/>
+        <rect x="169" y="99"  width="8" height="12" rx="1.5" fill="rgba(76,255,191,0.24)"/>
+        <rect x="152" y="127" width="8" height="12" rx="1.5" fill="rgba(76,255,191,0.14)"/>
+        <rect x="169" y="119" width="8" height="12" rx="1.5" fill="rgba(76,255,191,0.14)"/>
+        <rect x="152" y="147" width="8" height="12" rx="1.5" fill="rgba(76,255,191,0.07)"/>
+        <rect x="169" y="139" width="8" height="12" rx="1.5" fill="rgba(76,255,191,0.07)"/>
+
+        <!-- Windows — left face (1 col × 4 floors) -->
+        <rect x="110" y="81"  width="8" height="12" rx="1.5" fill="rgba(76,255,191,0.13)"/>
+        <rect x="110" y="101" width="8" height="12" rx="1.5" fill="rgba(76,255,191,0.09)"/>
+        <rect x="110" y="121" width="8" height="12" rx="1.5" fill="rgba(76,255,191,0.06)"/>
+        <rect x="110" y="141" width="8" height="12" rx="1.5" fill="rgba(76,255,191,0.04)"/>
+
+        <!-- Silhouette edges -->
+        <line x1="90"  y1="65"  x2="90"  y2="145" stroke="rgba(255,255,255,0.07)" stroke-width="0.5"/>
+        <line x1="190" y1="65"  x2="190" y2="145" stroke="rgba(255,255,255,0.07)" stroke-width="0.5"/>
+        <line x1="90"  y1="145" x2="140" y2="170" stroke="rgba(255,255,255,0.07)" stroke-width="0.5"/>
+        <line x1="140" y1="170" x2="190" y2="145" stroke="rgba(255,255,255,0.07)" stroke-width="0.5"/>
+
+        <!-- Floating particles -->
+        <circle cx="52"  cy="98"  r="2"   fill="rgba(76,255,191,0.45)"/>
+        <circle cx="228" cy="88"  r="1.5" fill="rgba(255,107,138,0.45)"/>
+        <circle cx="68"  cy="158" r="1.5" fill="rgba(76,255,191,0.28)"/>
+        <circle cx="216" cy="155" r="2"   fill="rgba(76,255,191,0.22)"/>
+        <circle cx="242" cy="112" r="1"   fill="rgba(255,107,138,0.32)"/>
+        <circle cx="44"  cy="132" r="1"   fill="rgba(76,255,191,0.22)"/>
+        <circle cx="255" cy="75"  r="1.5" fill="rgba(255,107,138,0.2)"/>
+        <circle cx="30"  cy="80"  r="1"   fill="rgba(76,255,191,0.18)"/>
+      </svg>
+
+      <div class="mw-title"
+           data-tr="BuildingPath"
+           data-en="BuildingPath">BuildingPath</div>
+      <div class="mw-sub"
+           data-tr="Hedefinizi seçin veya iç mekan rotanızı görselleştirmesi için yapay zeka asistanına sorun"
+           data-en="Select your destination or ask the AI assistant to visualize your indoor route">
+        Hedefinizi seçin ya da yapay zeka asistanına sorun — iç mekan rotanız haritada görünsün
+      </div>
+    </div>
+
+    <!-- Map view (shown after navigation) -->
+    <div id="map-view" class="map-view hidden">
+
+      <!-- Floor selector tabs -->
+      <div class="map-floor-tabs" id="map-floor-tabs"></div>
+
+      <!-- Floor-plan image -->
+      <div class="map-img-wrap">
+        <div class="map-loading hidden" id="map-loading">
+          <span class="spinner"></span>
+        </div>
+        <img id="map-img" src="" alt="" />
+        <div class="map-legend">
+          <span class="leg-item">
+            <span class="leg-dot start-dot"></span>
+            <span class="leg-label"
+                  data-tr="Başlangıç" data-en="Start">Başlangıç</span>
+          </span>
+          <span class="leg-item">
+            <span class="leg-dot end-dot"></span>
+            <span class="leg-label"
+                  data-tr="Hedef" data-en="Destination">Hedef</span>
+          </span>
+          <span class="leg-item">
+            <span class="leg-dot trans-dot"></span>
+            <span class="leg-label"
+                  data-tr="Kat geçişi" data-en="Floor change">Kat geçişi</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Route step summary -->
+      <div class="map-stats" id="map-stats"></div>
+
+    </div>
+  </section>
+
+</div><!-- /#mode-nav -->
+
+<div class="app-body hidden" id="mode-explore">
+  <!-- Explore chat (info Q&A) -->
+  <section class="chat-panel">
+    <div class="messages" id="exp-messages"></div>
+    <div class="input-bar" id="exp-input-bar">
+      <input id="exp-input" type="text" autocomplete="off"
+             placeholder="Soru sorun…" data-tr="Soru sorun…" data-en="Ask a question…"/>
+      <button id="exp-send-btn" aria-label="Gönder">&#8594;</button>
+    </div>
+  </section>
+
+  <!-- Explorer tree -->
+  <section class="map-panel explore-panel">
+    <div class="explore-controls">
+      <input id="exp-search" type="text"
+             placeholder="Ara…" data-tr="Ara…" data-en="Search…"/>
+      <select id="exp-floor-filter">
+        <option value="" data-tr="Tüm Katlar" data-en="All Floors">Tüm Katlar</option>
+      </select>
+    </div>
+    <div class="explore-tree" id="explore-tree">
+      <div class="explore-loading">Yükleniyor…</div>
+    </div>
+  </section>
+</div><!-- /#mode-explore -->
+
+<div id="mode-plans" class="app-body hidden">
+  <section class="plans-panel">
+    <div class="plans-header">
+      <div class="plans-title">
+        <i data-lucide="layers" class="plans-title-icon"></i>
+        <div>
+          <div class="plans-title-text"
+               data-tr="Kat Planları" data-en="Floor Plans">Kat Planları</div>
+          <div class="plans-title-sub"
+               data-tr="Binanın tüm kat planlarını görüntüleyin"
+               data-en="Browse all floor plans of the building">
+            Binanın tüm kat planlarını görüntüleyin
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="plans-body">
+      <nav class="plans-floor-sidebar" id="plans-floor-tabs" aria-label="Floor selector"></nav>
+      <div class="plans-img-wrap">
+        <div class="map-loading hidden" id="plans-loading">
+          <span class="spinner"></span>
+        </div>
+        <img id="plans-img" src="" alt="" />
+      </div>
+    </div>
+  </section>
+</div><!-- /#mode-plans -->
+
+</div><!-- /#main-app -->
+
+<script src="/static/app.js"></script>
+</body>
+</html>
